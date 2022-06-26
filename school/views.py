@@ -184,8 +184,8 @@ def admin_dashboard_view(request):
     teachersalary=models.TeacherExtra.objects.filter(status=True).aggregate(Sum('salary'))
     pendingteachersalary=models.TeacherExtra.objects.filter(status=False).aggregate(Sum('salary'))
 
-    studentfee=models.StudentExtra.objects.filter(status=True).aggregate(Sum('fee',default=0))
-    pendingstudentfee=models.StudentExtra.objects.filter(status=False).aggregate(Sum('fee'))
+   # studentfee=models.StudentExtra.objects.filter(status=True).aggregate(Sum('fee',default=0))
+   # pendingstudentfee=models.StudentExtra.objects.filter(status=False).aggregate(Sum('fee'))
 
     notice=models.Notice.objects.all()
 
@@ -200,8 +200,8 @@ def admin_dashboard_view(request):
         'teachersalary':teachersalary['salary__sum'],
         'pendingteachersalary':pendingteachersalary['salary__sum'],
 
-        'studentfee':studentfee['fee__sum'],
-        'pendingstudentfee':pendingstudentfee['fee__sum'],
+       # 'studentfee':studentfee['fee__sum'],
+       # 'pendingstudentfee':pendingstudentfee['fee__sum'],
 
         'notice':notice
 
