@@ -99,6 +99,7 @@ urlpatterns = [
     path('contactus', views.contactus_view),
     path('student-message', views.student_message_view,name='student-message'),
      path('teacher-view-student-messages', views.teacher_view_student_feedback_view,name='teacher-view-student-messages'),
+    path('student-edit', views.student_edit_view,name='student-edit'),
 
     
 
