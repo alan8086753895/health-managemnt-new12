@@ -109,7 +109,24 @@ def teacher_signup_view(request):
     return render(request,'school/teachersignup.html',context=mydict)
 
 
-
+@login_required(login_url='studentlogin')
+@user_passes_test(is_student)
+def student_edit_view(request):
+    student=models.StudentExtra.objects.get(user_id=request.user.id)
+    user=models.User.objects.get(id=student.user_id)
+    form1=forms.StudentUserForm(instance=user)
+    form2=forms.StudentExtraForm(request.FILES,instance=student)
+    mydict={'form1':form1,'form2':form2,'student':student}
+    if request.method=='POST':
+        form1=forms.StudentUserForm(request.POST,instance=user)
+        form2=forms.StudentExtraForm(request.POST,instance=student)
+        if form1.is_valid() and form2.is_valid():
+            user=form1.save()
+            user.set_password(user.password)
+            user.save()
+            form2.save()
+            return redirect('/')
+    return render(request,'school/student_edit.html',context=mydict)
 
 
 
