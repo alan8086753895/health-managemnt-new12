@@ -423,15 +423,15 @@ def delete_student_from_school_view(request,pk):
     student.delete()
     return redirect('admin-view-student')
 
-
-@login_required(login_url='teacherlogin')
+@login_required(login_url='teaherlogin')
 @user_passes_test(is_teacher)
-def delete_student_from_school_view(request,pk):
+def delete_student_teacher_from_school_view(request,pk):
     student=models.StudentExtra.objects.get(id=pk)
     user=models.User.objects.get(id=student.user_id)
     user.delete()
     student.delete()
     return redirect('teacher-view-student')
+
 
 
 @login_required(login_url='adminlogin')
@@ -442,6 +442,15 @@ def delete_student_view(request,pk):
     user.delete()
     student.delete()
     return redirect('admin-approve-student')
+
+@login_required(login_url='teacherlogin')
+@user_passes_test(is_teacher)
+def delete_student_teacher_view(request,pk):
+    student=models.StudentExtra.objects.get(id=pk)
+    user=models.User.objects.get(id=student.user_id)
+    user.delete()
+    student.delete()
+    return redirect('teacher-view-student')
 
 
 @login_required(login_url='adminlogin')
@@ -465,6 +474,28 @@ def update_student_view(request,pk):
             f2.save()
             return redirect('admin-view-student')
     return render(request,'school/admin_update_student.html',context=mydict)
+
+@login_required(login_url='teacherlogin')
+@user_passes_test(is_teacher)
+def update_student_teacher_view(request,pk):
+    student=models.StudentExtra.objects.get(id=pk)
+    user=models.User.objects.get(id=student.user_id)
+    form1=forms.StudentUserForm(instance=user)
+    form2=forms.StudentExtraForm(instance=student)
+    mydict={'form1':form1,'form2':form2}
+    if request.method=='POST':
+        form1=forms.StudentUserForm(request.POST,instance=user)
+        form2=forms.StudentExtraForm(request.POST,instance=student)
+        print(form1)
+        if form1.is_valid() and form2.is_valid():
+            user=form1.save()
+            user.set_password(user.password)
+            user.save()
+            f2=form2.save(commit=False)
+            f2.status=True
+            f2.save()
+            return redirect('admin-view-student')
+    return render(request,'school/teacher_update_student.html',context=mydict)
 
 
 
