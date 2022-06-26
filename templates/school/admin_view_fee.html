@@ -29,22 +29,23 @@
   <div class="row">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h6 class="panel-title">FEE of class {{cl}} </h6>
+        <h6 class="panel-title">Member details {{cl}} </h6>
       </div>
       <table class="table table-hover" id="dev-table">
         <thead>
           <tr>
-            <th>Student Name</th>
-            <th>Student Roll</th>
-            <th>Student Mobile</th>
-            <th>Dues</th>
+            <th>member Name</th>
+
+            <th> Mobile</th>
+
           </tr>
         </thead>
         {%for f in feedetails %}
         <tr>
           <td>{{f.get_name}}</td>
-          <td>{{f.roll}}</td>
           <td>{{f.mobile}}</td>
+          <td>{{f.roll}}</td>
+
           <td>{{f.fee}}</td>
         </tr>
         {%endfor%}
