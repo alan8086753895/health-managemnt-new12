@@ -51,6 +51,7 @@ facebook : fb.com/sumit.luv
             <th>Age</th>
             <th>Mobile</th>
             <th>Approve</th>
+            <th>pregnancy</th>
             <th>Delete</th>
           </tr>
         </thead>
@@ -60,6 +61,7 @@ facebook : fb.com/sumit.luv
           <td>{{s.cl}}</td>
           <td>{{s.age}}</td>
           <td>{{s.mobile}}</td>
+          <td>{{s.pregnancy}}</td>
           <td><a class="btn btn-primary btn-xs" href="{% url 'approve-student' s.id  %}"><span class="glyphicon glyphicon-ok"></span></a></td>
           <td><a class="btn btn-danger btn-xs" href="{% url 'delete-student' s.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>

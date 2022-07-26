@@ -29,9 +29,10 @@ class StudentExtra(models.Model):
     age=models.PositiveIntegerField(null=True)
     cl= models.CharField(max_length=10,choices=classes,default='one')
     status=models.BooleanField(default=False)
+    pregnancy = models.CharField(max_length=40, null=True)
     @property
     def get_name(self):
-        return self.user.first_name+" "+self.user.last_name
+        return self.user.first_name+" "+self.user.last_name+" "+self.pregnancy
     @property
     def get_id(self):
         return self.user.id
