@@ -17,7 +17,7 @@ class StudentUserForm(forms.ModelForm):
 class StudentExtraForm(forms.ModelForm):
     class Meta:
         model=models.StudentExtra
-        fields=['cl','mobile','age','pregnancy']
+        fields=['cl','mobile','age']
 
 
 
@@ -30,8 +30,19 @@ class TeacherExtraForm(forms.ModelForm):
     class Meta:
         model=models.TeacherExtra
         fields=['salary','mobile','status']
+class PregForm(forms.ModelForm):
+    class Meta:
+        model=models.Preganancy
+        fields=['pregnancy']
 
-
+class KidForm(forms.ModelForm):
+    class Meta:
+        model=models.Kids
+        fields=['kids']
+class VaccForm(forms.ModelForm):
+    class Meta:
+        model=models.Vaccination
+        fields=['vacctype','vaccdate','dose']
 
 
 #for Attendance related form

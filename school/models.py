@@ -18,9 +18,9 @@ class TeacherExtra(models.Model):
     def get_name(self):
         return self.user.first_name+" "+self.user.last_name
 
-
-
-
+dos = [('first','first'),('second','second')]
+vac = [('covishield','covishield'),('covaxin','covaxin'),('sputnik','sputnik')]
+preg = [('yes','yes'),('no','no')]
 classes=[('one','one'),('two','two'),('three','three'),
 ('four','four'),('five','five'),('six','six'),('seven','seven'),('eight','eight'),('nine','nine'),('ten','ten')]
 class StudentExtra(models.Model):
@@ -29,17 +29,24 @@ class StudentExtra(models.Model):
     age=models.PositiveIntegerField(null=True)
     cl= models.CharField(max_length=10,choices=classes,default='one')
     status=models.BooleanField(default=False)
-    pregnancy = models.CharField(max_length=40, null=True)
+    
     @property
     def get_name(self):
-        return self.user.first_name+" "+self.user.last_name+" "+self.pregnancy
+        return self.user.first_name+" "+self.user.last_name
+
     @property
     def get_id(self):
         return self.user.id
     def __str__(self):
         return self.user.first_name
-
-
+class Preganancy(models.Model):
+    pregnancy = models.CharField(max_length=10,choices=preg,default='no')
+class Kids(models.Model):
+    kids=models.PositiveIntegerField(null=True)
+class Vaccination(models.Model):
+    vacctype = models.CharField(max_length=10,choices=vac,default='covishield')
+    vaccdate = models.CharField(max_length=40,null=True)
+    dose = models.CharField(max_length=10,choices=dos,default='first')
 
 class Attendance(models.Model):
     roll=models.CharField(max_length=10,null=True)

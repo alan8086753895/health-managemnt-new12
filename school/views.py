@@ -85,7 +85,51 @@ def student_signup_view(request):
 
         return HttpResponseRedirect('studentlogin')
     return render(request,'school/studentsignup.html',context=mydict)
+def preg_view(request):
+    form1=forms.PregForm()
+    
+    mydict={'form1':form1}
+    if request.method=='POST':
+        form1=forms.PregForm(request.POST)
+        
+        if form1.is_valid():
+            user=form1.save()
+            
+            user.save()
+    
 
+        return HttpResponseRedirect('student-dashboard')
+    return render(request,'school/preg.html',context=mydict)
+def kid_view(request):
+    form1=forms.KidForm()
+    
+    mydict={'form1':form1}
+    if request.method=='POST':
+        form1=forms.KidForm(request.POST)
+        
+        if form1.is_valid():
+            user=form1.save()
+            
+            user.save()
+    
+
+        return HttpResponseRedirect('student-dashboard')
+    return render(request,'school/preg2.html',context=mydict)
+def vacc_view(request):
+    form1=forms.VaccForm()
+    
+    mydict={'form1':form1}
+    if request.method=='POST':
+        form1=forms.VaccForm(request.POST)
+        
+        if form1.is_valid():
+            user=form1.save()
+            
+            user.save()
+    
+
+        return HttpResponseRedirect('student-dashboard')
+    return render(request,'school/preg3.html',context=mydict)
 
 def teacher_signup_view(request):
     form1=forms.TeacherUserForm()
@@ -171,6 +215,9 @@ def student_edit_view(request):
             form2.save()
             return redirect('/')
     return render(request,'school/student_edit.html',context=mydict)
+def preganancy(request):
+    
+    return render(request,'school/preg.html')
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
