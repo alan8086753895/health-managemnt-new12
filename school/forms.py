@@ -21,7 +21,7 @@ class StudentExtraForm(forms.ModelForm):
 
 
 
-#for teacher related form
+#for teacher related for
 class TeacherUserForm(forms.ModelForm):
     class Meta:
         model=User
