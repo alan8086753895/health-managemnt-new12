@@ -7,6 +7,9 @@ from django.contrib.auth.decorators import login_required,user_passes_test
 from django.conf import settings
 from django.core.mail import send_mail
 
+from .models import covidcase,covidoutbreaks,futurecovid
+
+
 def home_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
@@ -193,7 +196,7 @@ def afterlogin_view(request):
     elif is_student(request.user):
         return redirect('student-dashboard')
 
-
+    return render(request, 'school/adminbase.html')
 
 
 #for dashboard of adminnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn(by sumit)
@@ -883,3 +886,43 @@ def contactus_view(request):
             send_mail(str(name)+' || '+str(email),message,settings.EMAIL_HOST_USER, settings.EMAIL_RECEIVING_USER, fail_silently = False)
             return render(request, 'school/contactussuccess.html')
     return render(request, 'school/contactus.html', {'form':sub})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def viewcovid(request):
+    cr = covidcase.objects.all()
+    return render(request,"school/covid.html",{'cr':cr})
+
+def viewcoviddatewise(request):
+    if request.method=="POST":
+        data = request.POST['date']
+        print(data)
+        date2=str(data)
+        cr = covidcase.objects.filter(date=date2)
+        return render(request,"school/coviddatewise.html",{'cr':cr})
+
+def viewcovidfuture(request):
+    if request.method=="POST":
+        data = request.POST['date']
+        print(data)
+        date2=str(data)
+        cr = futurecovid.objects.filter(date=date2)
+        return render(request,"school/covidfuture.html",{'cr':cr})
+def viewcovidoutbreak(request):
+    if request.method=="POST":
+        data = request.POST['date']
+        print(data)
+        date2=str(data)
+        cr = covidoutbreaks.objects.filter(date=date2)
+        return render(request,"school/covidoutbreaks.html",{'cr':cr})

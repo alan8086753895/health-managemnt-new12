@@ -104,6 +104,12 @@ urlpatterns = [
     path('kids-form', views.kid_view,name='kid'),
     path('covid-form', views.vacc_view,name='vacc'),
 
+
+    path('admin-covidcases',views.viewcovid,name='admin-covidcases'),
+    path('coviddatewise',views.viewcoviddatewise,name='coviddatewise'),
+    path('covidfuture',views.viewcovidfuture,name='covidfuture'),
+    path('covidoutbreaks',views.viewcovidoutbreak,name='covidoutbreaks'),
+
     
 
    

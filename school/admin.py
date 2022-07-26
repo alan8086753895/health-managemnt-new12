@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Attendance,StudentExtra,TeacherExtra,Notice,PhcExtra,PanchayathsecretaryExtra
+from .models import covidcase,covidoutbreaks,futurecovid
 # Register your models here. (by sumit.luv)
 class StudentExtraAdmin(admin.ModelAdmin):
     pass
@@ -24,3 +25,9 @@ admin.site.register(PhcExtra, PhcAdmin)
 class PanchayathsecretaryAdmin(admin.ModelAdmin):
     pass
 admin.site.register(PanchayathsecretaryExtra, PanchayathsecretaryAdmin)
+
+
+
+admin.site.register(covidcase)
+admin.site.register(covidoutbreaks)
+admin.site.register(futurecovid)

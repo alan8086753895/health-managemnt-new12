@@ -90,3 +90,28 @@ class Feedback(models.Model):
     date=models.DateField(auto_now=True)
     by=models.CharField(max_length=40)
     message=models.CharField(max_length=500)
+
+
+
+
+class covidcase(models.Model):
+    date = models.DateField(max_length=200,null=True)
+    #day = models.CharField(max_length=200,null=True)
+    dis=(('Alappuzha','Alappuzha'),('Wayanad','Wayanad'),('Ernakulam','Ernakulam'),('Thrissur','Thrissur'),('Thiruvananthapuram','Thiruvananthapuram'),('Pathanamthitta','Pathanamthitta'),('Palakkad','Palakkad'),('Malappuram','Malappuram'),('Kozhikode','Kozhikode'),('Kottayam','Kottayam'),('Kollam','Kollam'),('Kasaragod','Kasaragod'),('Kannur','Kannur'),('Idukki','Idukki'))
+    district = models.CharField(max_length=50,choices=dis)
+    covidcases = models.CharField(max_length=40,null=True)
+    numberofvaccination=models.CharField(max_length=40,null=True)
+class covidoutbreaks(models.Model):
+    date = models.DateField(max_length=200,null=True)
+    #day = models.CharField(max_length=200,null=True)
+    dis=(('Alappuzha','Alappuzha'),('Wayanad','Wayanad'),('Ernakulam','Ernakulam'),('Thrissur','Thrissur'),('Thiruvananthapuram','Thiruvananthapuram'),('Pathanamthitta','Pathanamthitta'),('Palakkad','Palakkad'),('Malappuram','Malappuram'),('Kozhikode','Kozhikode'),('Kottayam','Kottayam'),('Kollam','Kollam'),('Kasaragod','Kasaragod'),('Kannur','Kannur'),('Idukki','Idukki'))
+    district = models.CharField(max_length=50,choices=dis)
+    covidcases = models.CharField(max_length=40,null=True)
+
+class futurecovid(models.Model):
+    date = models.DateField(max_length=200,null=True)
+    #day = models.CharField(max_length=200,null=True)
+    dis=(('Alappuzha','Alappuzha'),('Wayanad','Wayanad'),('Ernakulam','Ernakulam'),('Thrissur','Thrissur'),('Thiruvananthapuram','Thiruvananthapuram'),('Pathanamthitta','Pathanamthitta'),('Palakkad','Palakkad'),('Malappuram','Malappuram'),('Kozhikode','Kozhikode'),('Kottayam','Kottayam'),('Kollam','Kollam'),('Kasaragod','Kasaragod'),('Kannur','Kannur'),('Idukki','Idukki'))
+    district = models.CharField(max_length=50,choices=dis)
+    covidcases = models.CharField(max_length=40,null=True)
+   # numberofvaccination=models.CharField(max_length=40,null=True)
