@@ -103,7 +103,7 @@ path('ashaview3', views.vacc_view,name='ashaview3'),
     path('student-edit', views.student_edit_view,name='student-edit'),
     path('preganancy-form', views.preg_view,name='preganancy'),
     path('kids-form', views.kids_view,name='kid'),
-    path('covid-form', views.vacc_view,name='vacc'),
+    path('covid-form', views.vacc_add,name='vacc'),
 
 
     path('admin-covidcases',views.viewcovid,name='admin-covidcases'),

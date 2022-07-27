@@ -1,19 +1,13 @@
-<!DOCTYPE html>
+{% extends 'school/studentbase.html' %}
 
 {% load widget_tweaks %}
-<html lang="en" dir="ltr">
+
+
+
+{% block content %}
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>LazyCoder || sumit</title>
-  <style type="text/css">
-    body {
-      color: #aa082e;
-      background-color: #b6bde7;
-      font-family: 'Roboto', sans-serif;
-    }
-
+  <style media="screen">
     a:link {
       text-decoration: none;
     }
@@ -48,62 +42,46 @@
     }
   </style>
 
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 
+<!------ student update page by admin(sumit)  ---------->
+<form method="post">
+  {% csrf_token %}
+  <div class="container register-form">
+    <div class="form">
+      <div class="note">
+        <p>Update Student Details</p>
+      </div>
 
-<body>
-  {% include "school/navbar.html" %}
-  <br>
-  <br>
-  <br>
-  <br>
-
-
-
-
-  <!--- signup page for teacher by admin(sumit)  ---------->
-  <form method="post">
-    {% csrf_token %}
-    <div class="container register-form">
-      <div class="form">
-        <div class="note">
-          <p>vaccination</p>
-        </div>
-
-        <div class="form-content">
-          <div class="row">
-            <div class="col-md-6">
-        
-              <div class="form-group">
-                {% render_field form1.vacctype class="form-control" placeholder="Count" %}
-              </div>
-              <div class="form-group">
-                {% render_field form1.vaccdate class="form-control" placeholder="dd-mm-yyy" %}
-              </div>
-              <div class="form-group">
-                {% render_field form1.dose class="form-control" placeholder="Count" %}
-              </div>
-             
-              
-
+      <div class="form-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              {% render_field form1.vacctype class="form-control" placeholder="First Name" %}
             </div>
+            <div class="form-group">
+              {% render_field form1.vaccdate class="form-control" placeholder="Username" %}
+            </div>
+            <div class="form-group">
+              {% render_field form1.dose class="form-control" placeholder="Mobile" %}
+            </div>
+            
           </div>
-          <button type="submit" class="btnSubmit">Send to ashaworker</button>
-          
         </div>
+        <button type="submit" class="btnSubmit">Submit</button>
       </div>
     </div>
+  </div>
 
-  </form>
+</form>
 
+<!--
+written By : sumit kumar
+facebook : fb.com/sumit.luv
+-->
 
-
-
-
-
-
-
-  {% include "school/footer.html" %}
-</body>
-
-</html>
+{% endblock content %}

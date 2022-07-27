@@ -118,7 +118,7 @@ def kids_view(request):
 
         return HttpResponseRedirect('student-dashboard')
     return render(request,'school/preg2.html',context=mydict)
-def vacc_view(request):
+def vacc_add(request):
     form1=forms.VaccForm()
     
     mydict={'form1':form1}
