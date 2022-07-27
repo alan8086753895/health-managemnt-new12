@@ -1,103 +1,81 @@
-<!DOCTYPE html>
+{% extends 'school/teacherbase.html' %}
 
-{% load widget_tweaks %}
-<html lang="en" dir="ltr">
+
+
+{% block content %}
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>LazyCoder || sumit</title>
-  <style type="text/css">
-    body {
-      color: #aa082e;
-      background-color: #b6bde7;
-      font-family: 'Roboto', sans-serif;
-    }
 
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
     a:link {
       text-decoration: none;
     }
 
-    .note {
+    h6 {
       text-align: center;
-      height: 80px;
-      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
-      color: #fff;
-      font-weight: bold;
-      line-height: 80px;
     }
 
-    .form-content {
-      padding: 5%;
-      border: 1px solid #ced4da;
-      margin-bottom: 2%;
-    }
-
-    .form-control {
-      border-radius: 1.5rem;
-    }
-
-    .btnSubmit {
-      border: none;
-      border-radius: 1.5rem;
-      padding: 1%;
-      width: 20%;
-      cursor: pointer;
-      background: #0062cc;
-      color: #fff;
+    .row {
+      margin: 100px;
     }
   </style>
 
 </head>
 
 
-<body>
-  {% include "school/navbar.html" %}
-  <br>
-  <br>
-  <br>
-  <br>
+<!--
+written By : sumit kumar
+facebook : fb.com/sumit.luv
+-->
 
 
+<div class="container">
 
+  <div class="row">
 
-  <!--- signup page for teacher by admin(sumit)  ---------->
-  <form method="post">
-    {% csrf_token %}
-    <div class="container register-form">
-      <div class="form">
-        <div class="note">
-          <p>pregnancy</p>
-        </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h6 class="panel-title">Members</h6>
 
-        <div class="form-content">
-          <div class="row">
-            <div class="col-md-6">
-        
-              <div class="form-group">
-                {% render_field form1.pregnancy class="form-control" placeholder="Username" %}
-              </div>
-             
-              
-
-            </div>
-          </div>
-          <button type="submit" class="btnSubmit">Send to ashaworker</button>
-          
-        </div>
       </div>
+
+      <table class="table table-hover" id="dev-table">
+        <thead>
+
+          <tr>
+            <th>Name</th>
+            <th>ward</th>
+            <th>Mobile</th>
+            <th>Age</th>
+            <th>Preganant</th>
+            
+          </tr>
+        </thead>
+        {% for s,b in data %}
+        <tr>
+          <td> {{s.get_name}}</td>
+          <td>{{s.cl}}</td>
+          <td>{{s.mobile}}</td>
+          <td>{{s.age}}</td>
+          <td>{{b.pregnancy}}</td>
+         
+
+        </tr>
+
+        {% endfor %}
+      </table>
     </div>
 
-  </form>
+
+  </div>
+</div>
 
 
 
 
 
-
-
-
-  {% include "school/footer.html" %}
-</body>
-
-</html>
+{% endblock content %}

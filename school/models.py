@@ -40,9 +40,9 @@ class StudentExtra(models.Model):
     def __str__(self):
         return self.user.first_name
 class Preganancy(models.Model):
-    pregnancy = models.CharField(max_length=10,choices=preg,default='no')
+    pregnancy=models.CharField(max_length=500)
 class Kids(models.Model):
-    kids=models.PositiveIntegerField(null=True)
+    kids=models.CharField(max_length=500)
 class Vaccination(models.Model):
     vacctype = models.CharField(max_length=10,choices=vac,default='covishield')
     vaccdate = models.CharField(max_length=40,null=True)

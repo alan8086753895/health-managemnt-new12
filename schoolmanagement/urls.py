@@ -46,8 +46,9 @@ urlpatterns = [
     path('delete-teacher-from-school/<int:pk>', views.delete_teacher_from_school_view,name='delete-teacher-from-school'),
     path('update-teacher/<int:pk>', views.update_teacher_view,name='update-teacher'),
     path('admin-view-teacher-salary', views.admin_view_teacher_salary_view,name='admin-view-teacher-salary'),
-
-
+     path('ashaview', views.asha_view,name='ashaview'),
+     path('ashaview2', views.kid_view,name='ashaview2'),
+path('ashaview3', views.vacc_view,name='ashaview3'),
     path('admin-student', views.admin_student_view,name='admin-student'),
     path('teacher-student', views.teacher_student_view,name='teacher-student'),
     path('admin-add-student', views.admin_add_student_view,name='admin-add-student'),
@@ -101,7 +102,7 @@ urlpatterns = [
      path('teacher-view-student-messages', views.teacher_view_student_feedback_view,name='teacher-view-student-messages'),
     path('student-edit', views.student_edit_view,name='student-edit'),
     path('preganancy-form', views.preg_view,name='preganancy'),
-    path('kids-form', views.kid_view,name='kid'),
+    path('kids-form', views.kids_view,name='kid'),
     path('covid-form', views.vacc_view,name='vacc'),
 
 

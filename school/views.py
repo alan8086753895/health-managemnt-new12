@@ -103,7 +103,7 @@ def preg_view(request):
 
         return HttpResponseRedirect('student-dashboard')
     return render(request,'school/preg.html',context=mydict)
-def kid_view(request):
+def kids_view(request):
     form1=forms.KidForm()
     
     mydict={'form1':form1}
@@ -267,13 +267,10 @@ def admin_dashboard_view(request):
 
 #for teacher sectionnnnnnnn by adminnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn(by sumit)
 
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
 def admin_teacher_view(request):
     return render(request,'school/admin_teacher.html')
 
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
+
 def admin_add_teacher_view(request):
     form1=forms.TeacherUserForm()
     form2=forms.TeacherExtraForm()
@@ -298,8 +295,7 @@ def admin_add_teacher_view(request):
     return render(request,'school/admin_add_teacher.html',context=mydict)
 
 
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
+
 def admin_view_teacher_view(request):
     teachers=models.TeacherExtra.objects.all().filter(status=True)
     return render(request,'school/admin_view_teacher.html',{'teachers':teachers})
@@ -316,15 +312,13 @@ def panchayathsecretary_view_teacher_view(request):
     teachers=models.TeacherExtra.objects.all().filter(status=True)
     return render(request,'school/panchayathsecretary_view_teacher.html',{'teachers':teachers})
 
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
+
 def admin_approve_teacher_view(request):
     teachers=models.TeacherExtra.objects.all().filter(status=False)
     return render(request,'school/admin_approve_teacher.html',{'teachers':teachers})
 
 
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
+
 def approve_teacher_view(request,pk):
     teacher=models.TeacherExtra.objects.get(id=pk)
     teacher.status=True
@@ -332,8 +326,7 @@ def approve_teacher_view(request,pk):
     return redirect(reverse('admin-approve-teacher'))
 
 
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
+
 def delete_teacher_view(request,pk):
     teacher=models.TeacherExtra.objects.get(id=pk)
     user=models.User.objects.get(id=teacher.user_id)
@@ -342,8 +335,6 @@ def delete_teacher_view(request,pk):
     return redirect('admin-approve-teacher')
 
 
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
 def delete_teacher_from_school_view(request,pk):
     teacher=models.TeacherExtra.objects.get(id=pk)
     user=models.User.objects.get(id=teacher.user_id)
@@ -352,8 +343,7 @@ def delete_teacher_from_school_view(request,pk):
     return redirect('admin-view-teacher')
 
 
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
+
 def update_teacher_view(request,pk):
     teacher=models.TeacherExtra.objects.get(id=pk)
     user=models.User.objects.get(id=teacher.user_id)
@@ -377,8 +367,7 @@ def update_teacher_view(request,pk):
     return render(request,'school/admin_update_teacher.html',context=mydict)
 
 
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
+
 def admin_view_teacher_salary_view(request):
     teachers=models.TeacherExtra.objects.all()
     return render(request,'school/admin_view_teacher_salary.html',{'teachers':teachers})
@@ -390,8 +379,7 @@ def admin_view_teacher_salary_view(request):
 
 #for student by adminnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn(by sumit)
 
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
+
 def admin_student_view(request):
     return render(request,'school/admin_student.html')
     
@@ -403,8 +391,7 @@ def phc_student_view(request):
 def panchayath_student_view(request):
     return render(request,'school/phc_student.html')
 
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
+
 def admin_add_student_view(request):
     form1=forms.StudentUserForm()
     form2=forms.StudentExtraForm()
@@ -458,8 +445,7 @@ def teacher_add_student_view(request):
     return render(request,'school/teacher_add_student.html',context=mydict)
 
 
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
+
 def admin_view_student_view(request):
     students=models.StudentExtra.objects.all().filter(status=True)
     return render(request,'school/admin_view_student.html',{'students':students})
@@ -470,6 +456,21 @@ def teacher_view_student_view(request):
     students=models.StudentExtra.objects.all().filter(status=True)
     return render(request,'school/teacher_view_student.html',{'students':students})
 
+def asha_view(request):
+    students=models.StudentExtra.objects.all().filter(status=True)
+    preg=models.Preganancy.objects.all()
+   
+    return render(request,'school/ashaview.html',{'data':zip(students,preg)})
+def kid_view(request):
+    students=models.StudentExtra.objects.all().filter(status=True)
+    kid=models.Kids.objects.all()
+   
+    return render(request,'school/ashaview2.html',{'data':zip(students,kid)})
+def vacc_view(request):
+    students=models.StudentExtra.objects.all()
+    vacc=models.Vaccination.objects.all()
+   
+    return render(request,'school/ashaview3.html',{'data':zip(students,vacc)})
 @login_required(login_url='phclogin')
 @user_passes_test(is_phc)
 def phc_view_student_view(request):
@@ -589,11 +590,6 @@ def approve_student_view(request,pk):
     return redirect(reverse('admin-approve-student'))
 
 
-
-
-
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
 def admin_view_student_fee_view(request):
     students=models.StudentExtra.objects.all()
     return render(request,'school/admin_view_student_fee.html',{'students':students})
@@ -635,8 +631,7 @@ def admin_take_attendance_view(request,cl):
 
 
 
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
+
 def admin_view_attendance_view(request,cl):
     form=forms.AskDateForm()
     if request.method=='POST':
@@ -660,14 +655,12 @@ def admin_view_attendance_view(request,cl):
 
 
 #fee related view by adminnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn(by sumit)
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
+
 def admin_fee_view(request):
     return render(request,'school/admin_fee.html')
 
 
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
+
 def admin_view_fee_view(request,cl):
     feedetails=models.StudentExtra.objects.all().filter(cl=cl)
     return render(request,'school/admin_view_fee.html',{'feedetails':feedetails,'cl':cl})
@@ -680,8 +673,7 @@ def admin_view_fee_view(request,cl):
 
 
 #notice related viewsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss(by sumit)
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
+
 def admin_notice_view(request):
     form=forms.NoticeForm()
     if request.method=='POST':
@@ -925,4 +917,4 @@ def viewcovidoutbreak(request):
         print(data)
         date2=str(data)
         cr = covidoutbreaks.objects.filter(date=date2)
-        return render(request,"school/covidoutbreaks.html",{'cr':cr})
+        return render(request,"school/covidfuture.html",{'cr':cr})
